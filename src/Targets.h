@@ -9,11 +9,12 @@
 #ifndef Targets_h
 #define Targets_h
 
-class Target {
-    
+#include "Circle.h"
+
+class Target : public Circle {
 };
 
-class Bomb {
+class Bomb : public Circle {
     
 };
 

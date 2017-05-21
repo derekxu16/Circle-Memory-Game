@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Circle.h
  * Author: Derek
  *
@@ -12,6 +12,7 @@
 
 class Circle {
 private:
+    bool visible;
     
 public:
     float x, y, radius;
@@ -19,6 +20,8 @@ public:
     static ofColor green, red;
     
     float distance(int mouseX, int mouseY);
+    bool isVisible();
+    void setVisibility(bool vis);
     ofColor color;
 };
 
