@@ -1,4 +1,4 @@
-#include "Circle.h"
+#include "Circle.hpp"
 #include <cmath>
 
 ofColor Circle::green = ofColor(51, 204, 51);
@@ -8,7 +8,6 @@ Circle::Circle(float x_, float y_, float rad) {
     x = x_;
     y = y_;
     radius = rad;
-    color = green;
     visible = true;
 }
 
