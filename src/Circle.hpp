@@ -16,6 +16,7 @@ private:
     
 public:
     float x, y, radius;
+    Circle();
     Circle(float x_, float y_, float rad);
     static ofColor green, red;
     
@@ -23,6 +24,7 @@ public:
     bool isVisible();
     void setVisibility(bool vis);
     ofColor color;
+    bool onClick(int x, int y);
 };
 
 #endif	/* CIRCLE_H */

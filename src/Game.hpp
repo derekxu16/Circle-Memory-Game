@@ -15,14 +15,14 @@
 
 class Game {
 private:
-    int score, round;
+    int score, round, numTargets, numBombs, lives;
     float startTime;
-    bool allowClicks;
-    vector<Bomb> bombs;
+    bool allowClicks, gameOver;
+    Target* targets;
+    Bomb* bombs;
     
 public:
     Game();
-    vector<Target> targets;
     
     void newRound(int difficulty);
     int getDifficulty();
@@ -31,7 +31,8 @@ public:
     void update();
     void mousePressed(int x, int y);
     
-    void updateScore(int score);
+    void updateScore(int change);
+    void updateLives();
     bool isFinished();
     
 };

@@ -4,6 +4,10 @@
 ofColor Circle::green = ofColor(51, 204, 51);
 ofColor Circle::red = ofColor(255, 51, 0);
 
+Circle::Circle() {
+    
+}
+
 Circle::Circle(float x_, float y_, float rad) {
     x = x_;
     y = y_;
@@ -21,4 +25,13 @@ bool Circle::isVisible() {
 
 void Circle::setVisibility(bool vis) {
     visible = vis;
+}
+
+bool Circle::onClick(int x, int y) {
+    if (!isVisible() && distance(x,y) < radius) {
+        setVisibility(true);
+        return 1;
+    } else {
+        return 0;
+    }
 }

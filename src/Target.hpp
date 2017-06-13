@@ -13,11 +13,13 @@
 
 class Target : public Circle {
 public:
+    Target();
     Target(float x_, float y_, float rad);
 };
 
 class Bomb : public Circle {
 public:
+    Bomb();
     Bomb(float x_, float y_, float rad);
     Bomb(float x_, float y_, float rad, int time);
     

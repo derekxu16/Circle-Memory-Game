@@ -10,6 +10,9 @@
 		6538EFB31ED10ADD00202510 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6538EFB21ED10ADD00202510 /* Circle.cpp */; };
 		6538EFBA1ED1DAED00202510 /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6538EFB81ED1DAED00202510 /* Bomb.cpp */; };
 		6538EFBD1ED2080500202510 /* Target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6538EFBB1ED2080500202510 /* Target.cpp */; };
+		654CBEE11EEE004B007962DC /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 654CBEDF1EEE004B007962DC /* Menu.cpp */; };
+		654CBEE41EEE039E007962DC /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 654CBEE21EEE039D007962DC /* Button.cpp */; };
+		654CBEE71EEECD95007962DC /* Buttons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 654CBEE51EEECD95007962DC /* Buttons.cpp */; };
 		657B14371ED49EDB00236A27 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 657B14351ED49EDB00236A27 /* Game.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -51,6 +54,12 @@
 		6538EFB71ED1192900202510 /* Target.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; path = Target.hpp; sourceTree = "<group>"; };
 		6538EFB81ED1DAED00202510 /* Bomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bomb.cpp; sourceTree = "<group>"; };
 		6538EFBB1ED2080500202510 /* Target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Target.cpp; sourceTree = "<group>"; };
+		654CBEDF1EEE004B007962DC /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		654CBEE01EEE004B007962DC /* Menu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
+		654CBEE21EEE039D007962DC /* Button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Button.cpp; sourceTree = "<group>"; };
+		654CBEE31EEE039D007962DC /* Button.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Button.hpp; sourceTree = "<group>"; };
+		654CBEE51EEECD95007962DC /* Buttons.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Buttons.cpp; sourceTree = "<group>"; };
+		654CBEE61EEECD95007962DC /* Buttons.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Buttons.hpp; sourceTree = "<group>"; };
 		657B14351ED49EDB00236A27 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		657B14361ED49EDB00236A27 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../of_v0.9.8_osx_release/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -123,6 +132,12 @@
 				6538EFBB1ED2080500202510 /* Target.cpp */,
 				657B14351ED49EDB00236A27 /* Game.cpp */,
 				657B14361ED49EDB00236A27 /* Game.hpp */,
+				654CBEDF1EEE004B007962DC /* Menu.cpp */,
+				654CBEE01EEE004B007962DC /* Menu.hpp */,
+				654CBEE21EEE039D007962DC /* Button.cpp */,
+				654CBEE31EEE039D007962DC /* Button.hpp */,
+				654CBEE51EEECD95007962DC /* Buttons.cpp */,
+				654CBEE61EEECD95007962DC /* Buttons.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -227,8 +242,11 @@
 				6538EFBA1ED1DAED00202510 /* Bomb.cpp in Sources */,
 				6538EFBD1ED2080500202510 /* Target.cpp in Sources */,
 				657B14371ED49EDB00236A27 /* Game.cpp in Sources */,
+				654CBEE11EEE004B007962DC /* Menu.cpp in Sources */,
 				6538EFB31ED10ADD00202510 /* Circle.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				654CBEE71EEECD95007962DC /* Buttons.cpp in Sources */,
+				654CBEE41EEE039E007962DC /* Button.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

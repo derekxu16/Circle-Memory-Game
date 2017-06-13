@@ -8,6 +8,10 @@
 
 #include "Target.hpp"
 
+Bomb::Bomb() {
+    
+}
+
 Bomb::Bomb(float x_, float y_, float rad) : Circle(x_, y_, rad){
     color = red;
 }
