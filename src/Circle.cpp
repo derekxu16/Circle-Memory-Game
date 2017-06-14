@@ -1,7 +1,7 @@
 #include "Circle.hpp"
 #include <cmath>
 
-ofColor Circle::green = ofColor(51, 204, 51);
+ofColor Circle::green = ofColor(0, 170, 81);
 ofColor Circle::red = ofColor(255, 51, 0);
 
 Circle::Circle() {

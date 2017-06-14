@@ -7,10 +7,24 @@
 //
 
 #include "Button.hpp"
+#include "ofApp.hpp"
 
-Button::Button(int x_, int y_, int l, int w) {
+ofColor Button::green = ofColor(51, 204, 51);
+
+Button::Button() {
+}
+
+Button::Button(float x_, float y_, float w, float h, string label_) {
     x = x_;
     y = y_;
-    length = l;
     width = w;
+    height = h;
+    label = label_;
+}
+
+void Button::onClick(int x, int y, ofApp * app) {
+}
+
+string Button::getLabel() {
+    return label;
 }

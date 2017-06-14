@@ -12,10 +12,17 @@
 #include <stdio.h>
 #include "Button.hpp"
 
-class PlayBtn : public Button{
+class ofApp;
+
+class PlayBtn : public Button {
 public:
-    PlayBtn(int x_, int y_, int l, int w);
-    void onClick();
+    PlayBtn(int x_, int y_, int l, int w, string label);
+    void onClick(int x, int y, ofApp * app);
+};
+
+class SettingsBtn : public Button {
+    SettingsBtn(int x_, int y_, int l, int w, string label);
+    void onClick(int x, int y, ofApp * app);
 };
 
 #endif /* Buttons_hpp */

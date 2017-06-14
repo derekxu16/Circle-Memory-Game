@@ -7,13 +7,19 @@
 void ofApp::setup() {
     ofBackground(255, 255, 255);
     ofSetFrameRate(60);
-	game.newRound(1);
+	game = Game(this);
+	menu = Menu(this);
+	screen = 0;
 }
 
 //--------------------------------------------------------------
 
 void ofApp::update() {
-	game.update();
+	if (screen == 0) {
+		
+	} else {
+		game.update();
+	}
 }
 
 //--------------------------------------------------------------
@@ -21,67 +27,30 @@ void ofApp::update() {
 void ofApp::draw() {
     ofFill();
 	//Draws all circle objects to the screen
-	game.draw();
+	if (screen == 0) { //Draws either the menu or the screen
+		menu.draw();
+	} else {
+		game.draw();
+	}
 }
 
-//--------------------------------------------------------------
-
-void ofApp::keyPressed(int key) {
+void ofApp::changeScreen(int newScreen) {
+	if (newScreen == 1)
+		//When the menu switches to the gameplay, reset the game
+		newGame();
+	screen = newScreen;
 }
-
-//--------------------------------------------------------------
-
-void ofApp::keyReleased(int key) {
-    
-}
-
-//------------- -------------------------------------------------
-
-void ofApp::mouseMoved(int x, int y) {
-}
-
-//--------------------------------------------------------------
-
-void ofApp::mouseDragged(int x, int y, int button) {
-}
-
-//--------------------------------------------------------------
 
 void ofApp::mousePressed(int x, int y, int button) {
-	game.mousePressed(x, y);
+	if (screen == 0) {
+		menu.mousePressed(x, y);
+	} else {
+		game.mousePressed(x, y);
+	}
 }
 
-//--------------------------------------------------------------
-
-void ofApp::mouseReleased(int x, int y, int button) {
-}
-
-//--------------------------------------------------------------
-
-void ofApp::mouseEntered(int x, int y) {
-    
-}
-
-//--------------------------------------------------------------
-
-void ofApp::mouseExited(int x, int y) {
-    
-}
-
-//--------------------------------------------------------------
-
-void ofApp::windowResized(int w, int h) {
-    
-}
-
-//--------------------------------------------------------------
-
-void ofApp::gotMessage(ofMessage msg) {
-    
-}
-
-//--------------------------------------------------------------
-
-void ofApp::dragEvent(ofDragInfo dragInfo) {
-    
+void ofApp::newGame() {
+	game.reset();
+	game.newRound(1);
+	game.openFiles();
 }

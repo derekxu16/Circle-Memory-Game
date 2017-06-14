@@ -14,11 +14,14 @@
 #include <fstream>
 #include "Target.hpp"
 
+class ofApp; //Forward declaration
+
 class Game {
 private:
     int score, numTargets, numBombs, lives;
+    ofApp * app;
     vector<int> leaderboard;
-    float startTime;
+    float startTime, roundTimer;
     bool allowClicks, gameOver;
     Target* targets;
     Bomb* bombs;
@@ -27,6 +30,7 @@ private:
     
 public:
     Game();
+    Game(ofApp * app_);
     
     int round;
     void newRound(int difficulty);
@@ -36,11 +40,13 @@ public:
     void update();
     void mousePressed(int x, int y);
     
+    void reset();
     void updateScore(int change);
     void updateLives();
     bool isFinished();
     void loadScores();
     void sortScores();
+    void openFiles();
 };
 
 #endif /* Game_hpp */

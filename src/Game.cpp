@@ -10,14 +10,24 @@
 #include "Game.hpp"
 #include "Target.hpp"
 #include <algorithm>
+#include "ofApp.hpp"
 
 Game::Game() {
-    // Begin at round 1
+    
+}
+
+Game::Game(ofApp * app_) {
+    app = app_;
+    //Prevents error; when round starts the pointer must be allocated to be deleted
+    targets = new Target;
+    bombs = new Bomb;
+}
+
+void Game::reset() {
+    //Resets all varaibles in the game
     round = 1;
     score = 0;
     gameOver = false;
-    iLeaderboard.open("scores.txt");
-    oLeaderboard.open("scores.txt", ios::app);
 }
 
 void Game::newRound(int difficulty) {
@@ -33,22 +43,27 @@ void Game::newRound(int difficulty) {
         case 1:
             numTargets = 2;
             numBombs = 0;
+            roundTimer = 5;
             break;
         case 2:
             numTargets = 4;
             numBombs = 1;
+            roundTimer = 3;
             break;
         case 3:
             numTargets = 5;
             numBombs  = 3;
+            roundTimer = 3;
             break;
         case 4:
             numTargets = 6;
             numBombs = 3;
+            roundTimer = 2.5;
             break;
         case 5:
             numTargets = 7;
             numBombs = 4;
+            roundTimer = 2.2;
     }
     
     //Create new targets for the new level
@@ -175,7 +190,7 @@ void Game::update() {
         loadScores();
         return;
     }
-    if (!allowClicks && currTime - startTime >= 5) {
+    if (!allowClicks && currTime - startTime >= roundTimer) {
         allowClicks = true; //Allow the user to click hidden circles
         for (int i = 0; i < numTargets; i ++) {
             targets[i].setVisibility(false);
@@ -222,7 +237,15 @@ void Game::mousePressed(int x, int y) {
                 newRound(getDifficulty());
             }
         }
+    } else {
+        //When the game is over, clicking anywhere returns the player to the menu
+        app->changeScreen(0);
     }
+}
+
+void Game::openFiles() {
+    iLeaderboard.open("/Users/Derek/Documents/Programming/OpenFrameworks Projects/circleGame/circleGame/scores.txt");
+    oLeaderboard.open("/Users/Derek/Documents/Programming/OpenFrameworks Projects/circleGame/circleGame/scores.txt", ios::app);
 }
 
 void Game::updateScore(int change) {
@@ -253,17 +276,17 @@ void Game::loadScores() {
     while (true) {
         int score;
         iLeaderboard >> score;
-        leaderboard.push_back(score);
         if (iLeaderboard.eof()) {
             break;
         }
+        leaderboard.push_back(score);
     }
     sortScores();
 }
 
 void Game::sortScores() {
     //Performs insertion sort on the leaderboard
-    for (int i = i; i < leaderboard.size(); i ++) {
+    for (int i = 1; i < leaderboard.size(); i ++) {
         int item = leaderboard[i];
         int j = i;
         while (j > 0 && leaderboard[j-1] < item) {
