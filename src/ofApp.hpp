@@ -4,8 +4,6 @@
 
 #include <vector>
 #include "Game.hpp"
-#include "Circle.hpp"
-#include "Target.hpp"
 
 typedef struct {
    float x;

@@ -8,12 +8,16 @@
 
 #include "ofMain.h"
 #include "Game.hpp"
+#include "Target.hpp"
+#include <algorithm>
 
 Game::Game() {
     // Begin at round 1
     round = 1;
     score = 0;
     gameOver = false;
+    iLeaderboard.open("scores.txt");
+    oLeaderboard.open("scores.txt", ios::app);
 }
 
 void Game::newRound(int difficulty) {
@@ -100,7 +104,9 @@ void Game::newRound(int difficulty) {
                 }
             }
         }
-        bombs[i] = (Bomb(x,y,RADIUS));
+        //Randomly generate how dangerous the bomb will be
+        int danger = ofRandom(1,round);
+        bombs[i] = (Bomb(x,y,RADIUS, danger));
     }
 }
 
@@ -139,12 +145,21 @@ void Game::draw() {
             if (bombs[i].isVisible()) { //Check if circle should be hidden
                 ofSetColor(bombs[i].color); //Chooses the correct color
                 ofDrawCircle(bombs[i].x, bombs[i].y, bombs[i].radius); //Draw circle
+                ofSetColor(0,0,0);
+                ofDrawBitmapString(to_string(bombs[i].getDanger()), bombs[i].x, bombs[i].y);
             }
         }
     } else {
         //If the game is over, draw it to the screen
-        ofDrawBitmapString("GAME OVER", 1024/2, 768/2);
-        ofDrawBitmapString("Click anywhere to continue", 1024/2, 768/2 + 30);
+        ofSetColor(0,0,0);
+        ofDrawBitmapString("GAME OVER", 1024/2, 20);
+        ofDrawBitmapString("Click anywhere to continue", 1024/2, 50);
+        
+        ofDrawBitmapString("High Scores", 1024/2, 75);
+        
+        for (int i = 1; i <= leaderboard.size(); i ++) {
+            ofDrawBitmapString(to_string(i) + ". " + to_string(leaderboard[i-1]), 1024/2, 100 + 15*i);
+        }
     }
 }
 
@@ -152,8 +167,12 @@ void Game::update() {
     float currTime = ofGetElapsedTimef();
     
     //Check if the player has lost all their lives
-    if (lives == 0) {
+    if (lives == 0 && !gameOver) {
         gameOver = true;
+        //Write the newest score to the list of scores
+        oLeaderboard << score << "\n";
+        oLeaderboard.close();
+        loadScores();
         return;
     }
     if (!allowClicks && currTime - startTime >= 5) {
@@ -174,8 +193,8 @@ void Game::mousePressed(int x, int y) {
             for (int i = 0; i < numTargets; i ++) {
                 //Checks if the mouse click happened inside any of the hidden targets
                 if (targets[i].onClick(x,y)) {
-                    clickFound = true;
                     updateScore(round * 50);
+                    clickFound = true;
                     break;
                 }
             }
@@ -183,13 +202,17 @@ void Game::mousePressed(int x, int y) {
             for (int i = 0; i < numBombs; i ++) {
                 //Checks if the click happened inside a bomb
                 if (bombs[i].onClick(x,y)) {
+                    //Decrease the score by 100 when hitting a bomb
+                    updateScore(-25 * bombs[i].getDanger());
+                    //Remove a life for hitting a bomb
+                    updateLives();
                     clickFound = true;
-                    updateScore(-99);
                     break;
                 }
             }
             
             if (!clickFound) {
+                //If the player missed, reduce the number of lives
                 updateLives();
             }
             
@@ -223,4 +246,30 @@ bool Game::isFinished() {
 
 void Game::updateLives() {
     lives --;
+}
+
+void Game::loadScores() {
+    //Loads all historical scores in order to prepare a leaderboard
+    while (true) {
+        int score;
+        iLeaderboard >> score;
+        leaderboard.push_back(score);
+        if (iLeaderboard.eof()) {
+            break;
+        }
+    }
+    sortScores();
+}
+
+void Game::sortScores() {
+    //Performs insertion sort on the leaderboard
+    for (int i = i; i < leaderboard.size(); i ++) {
+        int item = leaderboard[i];
+        int j = i;
+        while (j > 0 && leaderboard[j-1] < item) {
+            leaderboard[j] = leaderboard[j-1];
+            j --;
+        }
+        leaderboard[j] = item;
+    }
 }

@@ -21,10 +21,11 @@ class Bomb : public Circle {
 public:
     Bomb();
     Bomb(float x_, float y_, float rad);
-    Bomb(float x_, float y_, float rad, int time);
+    Bomb(float x_, float y_, float rad, int danger_);
+    int getDanger();
     
 private:
-    int fuseTime;
+    int danger;
 };
 
 

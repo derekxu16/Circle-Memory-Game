@@ -10,20 +10,25 @@
 #define Game_hpp
 
 #include <stdio.h>
-#include "Target.hpp"
 #include <vector>
+#include <fstream>
+#include "Target.hpp"
 
 class Game {
 private:
-    int score, round, numTargets, numBombs, lives;
+    int score, numTargets, numBombs, lives;
+    vector<int> leaderboard;
     float startTime;
     bool allowClicks, gameOver;
     Target* targets;
     Bomb* bombs;
+    ifstream iLeaderboard;
+    ofstream oLeaderboard;
     
 public:
     Game();
     
+    int round;
     void newRound(int difficulty);
     int getDifficulty();
     
@@ -34,7 +39,8 @@ public:
     void updateScore(int change);
     void updateLives();
     bool isFinished();
-    
+    void loadScores();
+    void sortScores();
 };
 
 #endif /* Game_hpp */

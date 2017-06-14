@@ -9,6 +9,7 @@
 #define	CIRCLE_H
 
 #include "ofMain.h"
+class Game;
 
 class Circle {
 private:

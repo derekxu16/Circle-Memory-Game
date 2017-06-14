@@ -7,6 +7,7 @@
 //
 
 #include "Target.hpp"
+#include "Game.hpp"
 
 Bomb::Bomb() {
     
@@ -16,7 +17,11 @@ Bomb::Bomb(float x_, float y_, float rad) : Circle(x_, y_, rad){
     color = red;
 }
 
-Bomb::Bomb(float x_, float y_, float rad, int time) : Circle(x_, y_, rad){
+Bomb::Bomb(float x_, float y_, float rad, int danger_) : Circle(x_, y_, rad){
     color = red;
-    fuseTime = time;
+    danger = danger_;
+}
+
+int Bomb::getDanger() {
+    return danger;
 }

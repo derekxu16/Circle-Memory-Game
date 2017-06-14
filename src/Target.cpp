@@ -7,6 +7,7 @@
 //
 
 #include "Target.hpp"
+#include "Game.hpp"
 
 Target::Target() {
     
