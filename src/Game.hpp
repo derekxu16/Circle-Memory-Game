@@ -48,6 +48,8 @@ public:
     void loadScores();
     void sortScores();
     void openFiles();
+    
+    float progressWidth();
 };
 
 #endif /* Game_hpp */

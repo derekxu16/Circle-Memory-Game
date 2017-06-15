@@ -29,3 +29,7 @@ void Button::onClick(int x, int y, ofApp * app) {
 string Button::getLabel() {
     return label;
 }
+
+ofColor Button::getColor() {
+    return color;
+}

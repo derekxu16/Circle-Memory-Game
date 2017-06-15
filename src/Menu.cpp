@@ -32,7 +32,7 @@ void Menu::draw() {
     
     //Draws all buttons to the screen
     for (int i = 0; i < NUM_BUTTONS; i ++) {
-        ofSetColor(ofColor(51, 204, 51));
+        ofSetColor(buttons[i]->getColor());
         ofDrawRectangle(buttons[i]->x, buttons[i]->y, buttons[i]->width, buttons[i]->height);
         ofSetColor(0,0,0);
         //Gets the width and height of the current string so the label can be centered

@@ -25,6 +25,7 @@ public:
     virtual void onClick(int x, int y, ofApp * app);
     static ofColor green, yellow;
     string getLabel();
+    ofColor getColor();
 };
 
 #endif /* Button_hpp */

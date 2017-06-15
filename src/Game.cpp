@@ -117,7 +117,7 @@ void Game::newRound(int difficulty) {
             }
             for (int j = 0; j < numBombs; j++) {
                 //Ensures that a circle will not be placed on another circle
-                if (targets[j].distance(x,y) < 2 * targets[j].radius) {
+                if (bombs[j].distance(x,y) < 2 * bombs[j].radius) {
                     valid = false;
                     break;
                 }
@@ -152,6 +152,9 @@ void Game::draw() {
     
     //Draws all circle objects to the screen
     if (!gameOver) {
+        //Draw a bar showing the countdown
+        ofSetColor(244, 75, 66);
+        ofDrawRectangle(0, 0, progressWidth() * 1024, 12);
         ofSetCircleResolution(100);
         for (int i = 0; i < numTargets; i ++) {
             if (targets[i].isVisible()) { //Check if circle should be hidden
@@ -273,6 +276,12 @@ bool Game::isFinished() {
         }
     }
     return true;
+}
+
+float Game::progressWidth() {
+    //returns the width of the progress bar
+    float currTime = ofGetElapsedTimef();
+    return (roundTimer - currTime + startTime)/roundTimer;
 }
 
 void Game::updateLives() {

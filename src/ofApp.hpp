@@ -6,15 +6,6 @@
 #include "Game.hpp"
 #include "Menu.hpp"
 
-typedef struct {
-   float x;
-   float y;
-   bool bBeingDragged;
-   bool bOver;
-   float radius;
-   
-} draggableVertex;
-
 class ofApp : public ofBaseApp {
 private:
    Game game;
