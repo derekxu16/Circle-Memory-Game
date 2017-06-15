@@ -38,7 +38,7 @@ void Menu::draw() {
         //Gets the width and height of the current string so the label can be centered
         int currWidth = labelFont.stringWidth(buttons[i]->getLabel());
         int currHeight = labelFont.stringHeight(buttons[i]->getLabel());
-        labelFont.drawString(buttons[i]->getLabel(), buttons[i]->x + buttons[i]->width/2 - currWidth/2, buttons[i]->y + buttons[i]->height/2 + currHeight/2);
+        labelFont.drawString(buttons[i]->getLabel(), buttons[i]->x + buttons[i]->width/2 - currWidth/2, buttons[i]->y + buttons[i]->height/2 + currHeight/3);
     }
 }
 

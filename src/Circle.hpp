@@ -14,12 +14,14 @@ class Game;
 class Circle {
 private:
     bool visible;
+protected:
+    static ofColor green, red;
     
 public:
     float x, y, radius;
     Circle();
     Circle(float x_, float y_, float rad);
-    static ofColor green, red;
+    
     
     float distance(int mouseX, int mouseY);
     bool isVisible();
