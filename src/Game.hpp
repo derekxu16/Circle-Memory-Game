@@ -25,6 +25,7 @@ private:
     bool allowClicks, gameOver;
     Target* targets;
     Bomb* bombs;
+    ofTrueTypeFont gill, calibri, gillsmaller;
     ifstream iLeaderboard;
     ofstream oLeaderboard;
     

@@ -14,12 +14,13 @@ Menu::Menu() : NUM_BUTTONS(0) {
     
 }
 
-Menu::Menu(ofApp * app_) : NUM_BUTTONS(1) {
+Menu::Menu(ofApp * app_) : NUM_BUTTONS(2) {
     app = app_;
     labelFont.load("../../fonts/gill.ttf", 30);
     
     //Initialize all the buttons
-    buttons.push_back(new PlayBtn (1024/2 - 200/2, 768/2 - 150/2 ,200,100, "Play"));
+    buttons.push_back(new PlayBtn (1024/2 - 200/2, 768/2 - 150,200,100, "Play"));
+    buttons.push_back(new HelpBtn (1024/2 - 200/2, 768/2 +50,200,100, "Help"));
 }
 
 void Menu::draw() {

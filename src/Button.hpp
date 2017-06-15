@@ -23,7 +23,7 @@ public:
     Button(float x_, float y_, float w, float h, string label_);
     float x, y, width, height;
     virtual void onClick(int x, int y, ofApp * app);
-    static ofColor green;
+    static ofColor green, yellow;
     string getLabel();
 };
 

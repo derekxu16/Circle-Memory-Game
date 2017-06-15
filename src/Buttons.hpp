@@ -20,8 +20,9 @@ public:
     void onClick(int x, int y, ofApp * app);
 };
 
-class SettingsBtn : public Button {
-    SettingsBtn(int x_, int y_, int l, int w, string label);
+class HelpBtn : public Button {
+public:
+    HelpBtn(int x_, int y_, int l, int w, string label);
     void onClick(int x, int y, ofApp * app);
 };
 

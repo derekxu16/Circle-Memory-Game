@@ -10,6 +10,7 @@
 #include "ofApp.hpp"
 
 ofColor Button::green = ofColor(51, 204, 51);
+ofColor Button::yellow = ofColor(244, 206, 66);
 
 Button::Button() {
 }

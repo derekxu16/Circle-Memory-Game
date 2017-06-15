@@ -21,6 +21,9 @@ Game::Game(ofApp * app_) {
     //Prevents error; when round starts the pointer must be allocated to be deleted
     targets = new Target;
     bombs = new Bomb;
+    gill.load("../../fonts/gill.ttf", 30);
+    gillsmaller.load("../../fonts/gill.ttf", 26);
+    calibri.load("../../fonts/Calibri.ttf", 20);
 }
 
 void Game::reset() {
@@ -28,6 +31,7 @@ void Game::reset() {
     round = 1;
     score = 0;
     gameOver = false;
+    openFiles();
 }
 
 void Game::newRound(int difficulty) {
@@ -143,8 +147,8 @@ int Game::getDifficulty() {
 void Game::draw() {
     //Draws score
     ofSetColor(0,0,0);
-    ofDrawBitmapString("Score: " + to_string(score), 20, 20);
-    ofDrawBitmapString("Lives: " + to_string(lives), 1024 - 100,20);
+    calibri.drawString("Score: " + to_string(score), 20, 40);
+    calibri.drawString("Lives: " + to_string(lives), 1024 - 100,40);
     
     //Draws all circle objects to the screen
     if (!gameOver) {
@@ -161,19 +165,23 @@ void Game::draw() {
                 ofSetColor(bombs[i].color); //Chooses the correct color
                 ofDrawCircle(bombs[i].x, bombs[i].y, bombs[i].radius); //Draw circle
                 ofSetColor(0,0,0);
-                ofDrawBitmapString(to_string(bombs[i].getDanger()), bombs[i].x, bombs[i].y);
+                int currWidth = calibri.stringWidth(to_string(bombs[i].getDanger()));
+                int currHeight = calibri.stringHeight(to_string(bombs[i].getDanger()));
+                calibri.drawString(to_string(bombs[i].getDanger()), bombs[i].x - currWidth/2, bombs[i].y + currHeight/2);
             }
         }
     } else {
         //If the game is over, draw it to the screen
         ofSetColor(0,0,0);
-        ofDrawBitmapString("GAME OVER", 1024/2, 20);
-        ofDrawBitmapString("Click anywhere to continue", 1024/2, 50);
+        int currWidth;
+        gill.drawString("GAME OVER", 1024/2 - gill.stringWidth("GAME OVER")/2, 90);
+        calibri.drawString("Click anywhere to continue", 1024 - 20 - calibri.stringWidth("Click anywhere to continue"), 768-30);
         
-        ofDrawBitmapString("High Scores", 1024/2, 75);
+        gillsmaller.drawString("High Scores", 1024/2 - gillsmaller.stringWidth("High Scores")/2, 150);
         
         for (int i = 1; i <= leaderboard.size(); i ++) {
-            ofDrawBitmapString(to_string(i) + ". " + to_string(leaderboard[i-1]), 1024/2, 100 + 15*i);
+            currWidth = calibri.stringWidth(to_string(i) + ". " + to_string(leaderboard[i-1]));
+            calibri.drawString(to_string(i) + ". " + to_string(leaderboard[i-1]), 1024/2 - currWidth/2, 160 + 30*i);
         }
     }
 }
@@ -244,8 +252,8 @@ void Game::mousePressed(int x, int y) {
 }
 
 void Game::openFiles() {
-    iLeaderboard.open("/Users/Derek/Documents/Programming/OpenFrameworks Projects/circleGame/circleGame/scores.txt");
-    oLeaderboard.open("/Users/Derek/Documents/Programming/OpenFrameworks Projects/circleGame/circleGame/scores.txt", ios::app);
+    iLeaderboard.open("scores.txt");
+    oLeaderboard.open("scores.txt", ios::app);
 }
 
 void Game::updateScore(int change) {
@@ -273,6 +281,7 @@ void Game::updateLives() {
 
 void Game::loadScores() {
     //Loads all historical scores in order to prepare a leaderboard
+    leaderboard.clear();
     while (true) {
         int score;
         iLeaderboard >> score;
@@ -281,6 +290,7 @@ void Game::loadScores() {
         }
         leaderboard.push_back(score);
     }
+    iLeaderboard.close();
     sortScores();
 }
 

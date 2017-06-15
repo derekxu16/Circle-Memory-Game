@@ -19,6 +19,7 @@ class ofApp : public ofBaseApp {
 private:
    Game game;
    Menu menu;
+   ofImage help;
    int screen;
 public:
    
